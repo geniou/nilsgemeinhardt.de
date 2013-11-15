@@ -1,7 +1,6 @@
 ---
 ---
 
-
 jQuery ->
   thumbs = jQuery('.thumb')
   imageContainer = jQuery('<div class="image"></div>')
@@ -37,8 +36,10 @@ jQuery ->
     unless thumb.hasClass('current')
       thumb.addClass('current').siblings('.current').removeClass('current')
       image.attr('src', thumb.find('img').data('image'))
-      (if thumb.hasClass('last-in-row') then thumb else thumb.nextAll('.last-in-row').first())
-        .after(imageContainer)
+      lastInRow = if thumb.hasClass('last-in-row') then thumb else thumb.nextAll('.last-in-row').first()
+      if imageContainer.prev()[0] != lastInRow[0]
+        lastInRow.after(imageContainer)
+        $('html,body').animate({scrollTop: thumb.position().top - 5}, 'slow')
       jQuery('body').addClass('show-image')
 
   image.click nextImage
