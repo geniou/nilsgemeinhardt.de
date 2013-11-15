@@ -5,6 +5,17 @@
 jQuery ->
   thumbs = jQuery('.thumb')
   imageContainer = jQuery('<div class="image"></div>')
+  image = jQuery('<img />').appendTo(imageContainer)
+
+  closeImage = ->
+    thumbs.removeClass('current')
+    jQuery('body').removeClass('show-image')
+
+  nextImage = ->
+    jQuery('.thumb.current').nextAll('.thumb').first().click()
+
+  prevImage = ->
+    jQuery('.thumb.current').prev().click()
 
   markLastInRow = ->
     thumbs.removeClass('last-in-row')
@@ -18,9 +29,22 @@ jQuery ->
 
   markLastInRow()
   jQuery(window).resize ->
-    imageContainer.hide()
+    closeImage()
     markLastInRow()
 
   thumbs.click ->
-    jQuery(@).nextAll('.last-in-row').first()
-      .after(imageContainer.show())
+    thumb = jQuery(@)
+    unless thumb.hasClass('current')
+      thumb.addClass('current').siblings('.current').removeClass('current')
+      image.attr('src', thumb.find('img').data('image'))
+      (if thumb.hasClass('last-in-row') then thumb else thumb.nextAll('.last-in-row').first())
+        .after(imageContainer)
+      jQuery('body').addClass('show-image')
+
+  image.click nextImage
+
+  jQuery('body').keypress (event) ->
+    switch event.keyCode
+      when 27 then closeImage()
+      when 39 then nextImage()
+      when 37 then prevImage()
