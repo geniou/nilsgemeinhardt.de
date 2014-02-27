@@ -1,5 +1,7 @@
 # nilsgemeinhardt.de website
 
+[![Build Status](https://travis-ci.org/geniou/nilsgemeinhardt.de.png?branch=master)](https://travis-ci.org/geniou/nilsgemeinhardt.de)
+
 ## Getting started
 
 The site is based on [jekyll](http://jekyllrb.com)
