@@ -9,7 +9,7 @@ module Jekyll
     end
 
     def output_ext(ext)
-      ".js"
+      '.js'
     end
 
     def convert(content)

@@ -1,9 +1,9 @@
 module Jekyll
   class ImagePage < Page
-    def initialize(site, base, dir)
+    def initialize(site, base)
       @site = site
       @base = base
-      @dir  = dir
+      @dir  = '/'
       @name = 'index.html'
 
       process(@name)
@@ -17,7 +17,7 @@ module Jekyll
 
     def generate(site)
       Dir.chdir(site.source)
-      image = ImagePage.new(site, site.source, "/")
+      image = ImagePage.new(site, site.source)
       image.render(site.layouts, site.site_payload)
       image.write(site.dest)
 

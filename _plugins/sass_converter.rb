@@ -9,12 +9,15 @@ module Jekyll
     end
 
     def output_ext(ext)
-      ".css"
+      '.css'
     end
 
     def convert(content)
-      engine = Sass::Engine.new(content, syntax: :scss, load_paths: ["./styles/"])
-      engine.render
+      engine(content).render
+    end
+
+    def engine(content)
+      Sass::Engine.new(content, syntax: :scss, load_paths: ['./styles/'])
     end
   end
 end
