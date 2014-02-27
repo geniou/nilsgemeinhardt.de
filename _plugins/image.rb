@@ -1,39 +1,28 @@
-module Jekyll
-  class ImageIndex < Page
-    def initialize(site, base, dir)
-      @site = site
-      @base = base
-      @dir  = dir
-      @name = 'index.html'
-
-      process(@name)
-      read_yaml(base, 'index.html')
-      data['images'] = images
-    end
-
-    def images
-      [].tap do |images|
-        Dir['photos/*.*'].each do |image|
-          images << {
-            'url' => "/photos/thumb/#{File.basename(image)}",
-            'large_url' => "/photos/#{File.basename(image)}"
-          }
-        end
-      end
+class Image
+  def self.all
+    Dir.glob('photos/*.*').map do |image|
+      new(File.basename(image)).to_hash
     end
   end
 
-  class GeneratorImage < Generator
-    safe true
+  def initialize(name)
+    @name = name
+  end
 
-    def generate(site)
-      Dir.chdir(site.source)
-      image = ImageIndex.new(site, site.source, "/")
-      image.render(site.layouts, site.site_payload)
-      image.write(site.dest)
+  def to_hash
+    {
+      'url'       => url,
+      'thumb_url' => thumb_url
+    }
+  end
 
-      site.pages << image
-      site.static_files << image
-    end
+  private
+
+  def url
+    "/photos/#{@name}"
+  end
+
+  def thumb_url
+    "/photos/thumb/#{@name}"
   end
 end

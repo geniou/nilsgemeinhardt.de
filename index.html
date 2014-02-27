@@ -5,6 +5,6 @@ title: nilsgemeinhardt.de
 
 {% for image in page.images %}
   <div class="thumb">
-    <img src="{{ image['url'] }}" data-image="{{ image['large_url'] }}" width="100" height="100" />
+    <img src="{{ image['thumb_url'] }}" data-image="{{ image['url'] }}" width="100" height="100" />
   </div>
 {% endfor %}
