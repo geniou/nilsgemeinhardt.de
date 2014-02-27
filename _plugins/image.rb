@@ -6,17 +6,17 @@ module Jekyll
       @dir  = dir
       @name = 'index.html'
 
-      self.process(@name)
-      self.read_yaml(base, 'index.html')
-      self.data['images'] = self.get_images
+      process(@name)
+      read_yaml(base, 'index.html')
+      data['images'] = images
     end
 
-    def get_images
+    def images
       [].tap do |images|
         Dir['photos/*.*'].each do |image|
           images << {
             'url' => "/photos/thumb/#{File.basename(image)}",
-            'large_url' => "/photos/#{File.basename(image)}",
+            'large_url' => "/photos/#{File.basename(image)}"
           }
         end
       end
