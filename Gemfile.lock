@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (1.1.0)
     classifier (1.3.3)
       fast-stemmer (>= 1.0.0)
     coffee-script (2.2.0)
@@ -25,6 +26,7 @@ GEM
       pygments.rb (~> 0.5.0)
       redcarpet (~> 2.3.0)
       safe_yaml (~> 0.9.7)
+    json (1.8.1)
     libv8 (3.16.14.3)
     liquid (2.5.4)
     listen (1.3.1)
@@ -33,10 +35,15 @@ GEM
       rb-kqueue (>= 0.2)
     maruku (0.6.1)
       syntax (>= 1.0.0)
+    parser (2.1.5)
+      ast (~> 1.1)
+      slop (~> 3.4, >= 3.4.5)
     posix-spawn (0.3.6)
+    powerpack (0.0.9)
     pygments.rb (0.5.4)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
+    rainbow (2.0.0)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.2)
       ffi (>= 0.5.0)
@@ -52,8 +59,14 @@ GEM
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.6)
+    rubocop (0.18.1)
+      json (>= 1.7.7, < 2)
+      parser (~> 2.1.3)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.99.1, < 3.0)
     safe_yaml (0.9.7)
     sass (3.2.12)
+    slop (3.4.7)
     syntax (1.0.0)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
@@ -68,5 +81,6 @@ DEPENDENCIES
   execjs
   jekyll
   rspec
+  rubocop
   sass
   therubyracer
